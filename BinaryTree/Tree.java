@@ -100,7 +100,6 @@ public class Tree {
             return 0;
         return 1+Math.max(height(root.leftChild),height(root.rightChild));
     }
-
     //O(log n) -- for Binary search tree
     public int min(){
         if (root==null)
@@ -113,7 +112,6 @@ public class Tree {
         }
         return last.value;
     }
-
     //0(n) -- For normal tree
     private int min(Node root){
         if (root == null) {
@@ -126,5 +124,19 @@ public class Tree {
         var right = min(root.rightChild);
         return Math.min(Math.min(left, right), root.value);
     }
-
+    public boolean equals(Tree other){
+        if (other==null)
+            return false;
+        return equals(root,other.root);
+    }
+    private boolean equals(Node first, Node second){
+        if(first==null && second==null)
+            return true;
+        if (first!=null && second!=null){
+            return first.value==second.value &&
+                    equals(first.leftChild,second.leftChild) &&
+                    equals(first.rightChild,second.rightChild);
+        }
+        return false;
+    }
 }
