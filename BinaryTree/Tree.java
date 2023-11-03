@@ -87,4 +87,44 @@ public class Tree {
         traversePostOrder(root.rightChild);
         System.out.println(root.value);
     }
+    private boolean isLeaf(Node node){
+        return node.leftChild==null && node.rightChild==null;
+    }
+    public int height(){
+       return height(root);
+    }
+    private int height(Node root){
+        if (root==null)
+            return -1;
+        if (isLeaf(root))
+            return 0;
+        return 1+Math.max(height(root.leftChild),height(root.rightChild));
+    }
+
+    //O(log n) -- for Binary search tree
+    public int min(){
+        if (root==null)
+            throw new IllegalStateException();
+        var current= root;
+        var last=current;
+        while (current!=null){
+            last=current;
+            current=current.leftChild;
+        }
+        return last.value;
+    }
+
+    //0(n) -- For normal tree
+    private int min(Node root){
+        if (root == null) {
+            return Integer.MAX_VALUE; // Return a large value to indicate an empty subtree
+        }
+        if (isLeaf(root)) {
+            return root.value;
+        }
+        var left = min(root.leftChild);
+        var right = min(root.rightChild);
+        return Math.min(Math.min(left, right), root.value);
+    }
+
 }

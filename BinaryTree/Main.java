@@ -11,8 +11,10 @@ public class Main {
         tree.insert(8);
         tree.insert(10);
         System.out.println(tree.find(1));
-        tree.traversePreOrder();
-        tree.traverseInOrder();
-        tree.traversePostOrder();
+//        tree.traversePreOrder();
+//        tree.traverseInOrder();
+//        tree.traversePostOrder();
+        System.out.println(tree.height());
+        System.out.println(tree.min());
     }
 }
